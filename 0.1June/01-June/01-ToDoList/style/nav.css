@@ -1,0 +1,85 @@
+ul li h1 {
+    font-size: 2rem;
+}
+
+.container-geral ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--cor-02);
+}
+
+.nav-bar li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.nav-bar {
+    width: 100%;
+    margin: 0px;
+    background: rgba(0, 0, 0, 0.32);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.nav-bar::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--cor-01);
+    margin-bottom: 20px;
+}
+
+
+.icon {
+    display: block;
+    content: "";
+    background: var(--cor-02);
+}
+
+.burger {
+    width: 30px;
+    height: 4px;
+    position: relative;
+    line-height: 10px;
+}
+
+.burger::after {
+    bottom: -10px;
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    content: "";
+    background: var(--cor-02);
+}
+
+.burger::before {
+    bottom: 10px;
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    content: "";
+    background: var(--cor-02);
+}
+
+
+.add-list {
+    margin-right: 20px;
+    position: relative;
+    height: 30px;
+    width: 4px;
+    justify-items: center;
+    display: flex;
+    left: 10px;
+}
+
+.add-list::after {
+    position: absolute;
+    top: 13px;
+    right: -13px;
+    width: 30px;
+    height: 4px;
+    content: "";
+    background: var(--cor-02);
+}

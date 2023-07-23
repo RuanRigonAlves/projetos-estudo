@@ -1,0 +1,79 @@
+.lista--container {
+  font-size: 1.25rem;
+  background-color: rgb(61, 84, 110);
+  display: grid;
+  justify-content: center;
+  padding: 10px;
+  max-width: 300px;
+  height: 400px;
+  grid-template-rows: 1fr 4fr;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+.add-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  gap: 5px;
+}
+
+.list-tittle {
+  text-align: center;
+  background: none;
+  outline: none;
+  transition: scale 0.2s ease-in-out;
+}
+.list-tittle:focus {
+  /* border-bottom: 2px solid white;
+  border-radius: 1px; */
+  scale: 1.2;
+  transition: scale 0.2s ease-in-out;
+}
+
+.item-input {
+  width: 166px;
+}
+
+.add-items input,
+button {
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.add-list {
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  /* max-height: 280px; */
+  overflow-y: auto;
+}
+
+.add-list p {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.ul-itens--list li:hover {
+  /* border-bottom: 2px solid white; */
+  scale: 1.03;
+  transition: scale 0.2s linear;
+}
+
+.ul-itens--list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  transition: scale 0.2s linear;
+  /* max-width: 200px; */
+}
+.ul-itens--list li button {
+  padding: 4px;
+  opacity: 0.2;
+}
+.ul-itens--list li:hover button {
+  opacity: 1;
+}
