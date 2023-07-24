@@ -9,67 +9,14 @@ const mainSection = document.querySelector(".main-section");
 headerProducts.addEventListener("click", function (e) {
   clearHTML();
 
-  displayProducts(model.myCoffeeData);
+  displayTypes(model.myCoffeeData);
+  displayProducts(model.myCoffeeData.Coffee.products);
 });
 
-const displayProducts = function (data) {
-  data = data.Coffee;
+export const displayProducts = function (data) {
   console.log(data);
 
-  const typesHTML = (() => {
-    let html = "";
-    for (const type in data.productsCategories) {
-      html += `
-          <input type="radio" name="type-food" id="${type}" />
-          <label for="${type}">${capitalizeFirstLetter(type)}</label>
-      `;
-    }
-    return html;
-  })();
-
-  // const subCategoryHTML = (() => {
-  //   let html = "";
-  //   for (const subCategory in data.productsSubCategories) {
-  //     html += `
-  //       <div>
-  //         <input type="checkbox" name="${subCategory}" id="${subCategory}" />
-  //         <label for="${subCategory}">${capitalizeFirstLetter(
-  //       subCategory
-  //     )}</label>
-  //       </div>
-  //     `;
-  //   }
-  //   return html;
-  // })();
-
-  mainSection.insertAdjacentHTML(
-    "afterbegin",
-    `
-  <section class="side-menu">
-        <div>
-          <div>
-            <input class="search-side-menu" type="text" placeholder="Search" />
-          </div>
-        </div>
-
-        <div class="checkbox-wrapper">
-          <p>Type</p>
-          <div class="side-menu-types">
-          ${typesHTML}
-          </div>
-        </div>
-        <div>
-          <p>Price Range</p>
-          <input type="range" name="" id="" />
-        </div>
-      </section>
-      <section class="main-content">
-      </section> 
-
-  `
-  );
-
-  const productsHTML = data.products
+  const productsHTML = data
     .map(
       (product) => `
         <li class='product-main'>
@@ -103,6 +50,47 @@ const displayProducts = function (data) {
         </ul>
       </div>
     </section>
+  `
+  );
+};
+
+const displayTypes = function (data) {
+  data = data.Coffee;
+  // console.log(data);
+
+  const typesHTML = Object.keys(data.productsCategories)
+    .map(
+      (type) => `
+    <input type="radio" name="type-food" id="${type}" />
+    <label for="${type}">${capitalizeFirstLetter(type)}</label>
+  `
+    )
+    .join("");
+
+  mainSection.insertAdjacentHTML(
+    "afterbegin",
+    `
+  <section class="side-menu">
+        <div>
+          <div>
+            <input class="search-side-menu" type="text" placeholder="Search" />
+          </div>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <p>Type</p>
+          <div class="side-menu-types">
+          ${typesHTML}
+          </div>
+        </div>
+        <div>
+          <p>Price Range</p>
+          <input type="range" name="" id="" />
+        </div>
+      </section>
+      <section class="main-content">
+      </section> 
+
   `
   );
 };
