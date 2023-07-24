@@ -20,27 +20,27 @@ const displayProducts = function (data) {
     let html = "";
     for (const type in data.productsCategories) {
       html += `
-          <input type="radio" name="a" id="${type}" />
+          <input type="radio" name="type-food" id="${type}" />
           <label for="${type}">${capitalizeFirstLetter(type)}</label>
       `;
     }
     return html;
   })();
 
-  const subCategoryHTML = (() => {
-    let html = "";
-    for (const subCategory in data.productsSubCategories) {
-      html += `
-        <div>
-          <input type="checkbox" name="${subCategory}" id="${subCategory}" />
-          <label for="${subCategory}">${capitalizeFirstLetter(
-        subCategory
-      )}</label>
-        </div>
-      `;
-    }
-    return html;
-  })();
+  // const subCategoryHTML = (() => {
+  //   let html = "";
+  //   for (const subCategory in data.productsSubCategories) {
+  //     html += `
+  //       <div>
+  //         <input type="checkbox" name="${subCategory}" id="${subCategory}" />
+  //         <label for="${subCategory}">${capitalizeFirstLetter(
+  //       subCategory
+  //     )}</label>
+  //       </div>
+  //     `;
+  //   }
+  //   return html;
+  // })();
 
   mainSection.insertAdjacentHTML(
     "afterbegin",
@@ -54,19 +54,10 @@ const displayProducts = function (data) {
 
         <div class="checkbox-wrapper">
           <p>Type</p>
-          <div>
+          <div class="side-menu-types">
           ${typesHTML}
           </div>
         </div>
-        <div class="checkbox-wrapper">
-          <p>Sub Category</p>
-          <div>
-
-            ${subCategoryHTML}
-
-          </div>
-        </div>
-
         <div>
           <p>Price Range</p>
           <input type="range" name="" id="" />
@@ -123,3 +114,12 @@ const clearHTML = function () {
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+// <div class="checkbox-wrapper">
+// <p>Sub Category</p>
+// <div>
+
+//   ${subCategoryHTML}
+
+// </div>
+// </div>

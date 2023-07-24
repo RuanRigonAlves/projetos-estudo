@@ -15,7 +15,7 @@ export async function fetchCoffeeData() {
     myCoffeeData["Coffee"] = jsonData;
 
     getCategories(jsonData.products);
-    getSubCategories(jsonData.products);
+    // getSubCategories(jsonData.products);
     // console.log(jsonData);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -52,3 +52,20 @@ const getSubCategories = function (arrayProducts) {
 };
 
 // Create productsSubCategories inside Object and store values //
+
+//testing some shit out//
+export const testing = function (id) {
+  const allProducts = myCoffeeData.Coffee.products;
+
+  const productsWithCategory = allProducts.filter(
+    (product) => product.category === id
+  );
+
+  getSubCategories(productsWithCategory);
+
+  // fetchCoffeeData();
+
+  // console.log(productsWithCategory);
+  // console.log(myCoffeeData.Coffee.productsSubCategories);
+};
+//testing some shit out//
