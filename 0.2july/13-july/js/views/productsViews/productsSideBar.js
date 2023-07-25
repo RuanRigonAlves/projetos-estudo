@@ -1,5 +1,6 @@
 import * as model from "../../model.js";
 import * as productView from "./productsView.js";
+import * as globalFunctions from "../../globalFunctions.js";
 
 export default function productsSideBar() {}
 
@@ -25,18 +26,14 @@ mainSection.addEventListener("click", function (e) {
       ? food.classList.add("active-food")
       : food.classList.remove("active-food");
   }
-  // console.log(parentEl);
 
-  // teste(clicked.id)
+  // console.log(clicked);
 
   if (clicked.name === "type-food") {
-    model.testing(clicked.id);
+    model.getSubCategoryByID(clicked.id);
 
-    console.log(model.myCoffeeData.Coffee.productsSubCategories);
+    globalFunctions.clearHTML(mainContent);
 
-    mainContent.innerHTML = "";
-
-    //  preciso rever essa budega pra entender//
     const combinedProducts = Object.values(
       model.myCoffeeData.Coffee.productsSubCategories
     )
@@ -44,7 +41,6 @@ mainSection.addEventListener("click", function (e) {
       .flat(); // Combine all the 'products' arrays into one
 
     productView.displayProducts(combinedProducts);
-    //  preciso rever essa budega pra entender//
 
     const subCategoryHTML = Object.keys(
       model.myCoffeeData.Coffee.productsSubCategories
@@ -53,7 +49,7 @@ mainSection.addEventListener("click", function (e) {
         (subCategory) => `
       <div>
         <input type="checkbox" name="${subCategory}" id="${subCategory}" />
-        <label for="${subCategory}">${capitalizeFirstLetter(
+        <label for="${subCategory}">${globalFunctions.capitalizeFirstLetter(
           subCategory
         )}</label>
       </div>
@@ -78,14 +74,4 @@ mainSection.addEventListener("click", function (e) {
     );
     currentSubCategoryWrapper = document.querySelector(".checkbox-wrapper2");
   }
-
-  // console.log(clicked.id);
 });
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-const clearHTML = function () {
-  mainContent.innerHTML = "";
-};

@@ -1,5 +1,6 @@
 "use strict";
 import * as model from "../../model.js";
+import * as globalFunctions from "../../globalFunctions.js";
 
 export default function initView() {}
 
@@ -7,33 +8,31 @@ const headerProducts = document.querySelector(".header-products");
 const mainSection = document.querySelector(".main-section");
 
 headerProducts.addEventListener("click", function (e) {
-  clearHTML();
+  globalFunctions.clearHTML(mainSection);
 
-  displayTypes(model.myCoffeeData);
+  displayTypes(model.myCoffeeData.Coffee.productsCategories);
   displayProducts(model.myCoffeeData.Coffee.products);
 });
 
-export const displayProducts = function (data) {
-  console.log(data);
-
-  const productsHTML = data
+export const displayProducts = function (products) {
+  const productsHTML = products
     .map(
       (product) => `
-        <li class='product-main'>
-          <div class="image-holder">
-            <img src="${product.image}" alt="">
-          </div>
-          <p class="product-title">${product.name.substring(0, 30)}</p>
-          <div class="product-main-text">
-            <ul class="product-marks">
-              <li>${product.subcategory}</li>
-              <li>${product.rating}</li>
-              </ul>
-              <ul>
-              <li class="product-price">R$ ${product.price}</li>
-              </ul>
-              </div>
-              </li>
+      <li class='product-main'>
+        <div class="image-holder">
+          <img src="${product.image}" alt="">
+        </div>
+        <p class="product-title">${product.name.substring(0, 30)}</p>
+        <div class="product-main-text">
+          <ul class="product-marks">
+            <li>${product.subcategory}</li>
+            <li>${product.rating}</li>
+          </ul>
+          <ul>
+            <li class="product-price">R$ ${product.price}</li>
+          </ul>
+        </div>
+      </li>
               `
     )
     .join("");
@@ -54,15 +53,12 @@ export const displayProducts = function (data) {
   );
 };
 
-const displayTypes = function (data) {
-  data = data.Coffee;
-  // console.log(data);
-
-  const typesHTML = Object.keys(data.productsCategories)
+const displayTypes = function (productCategories) {
+  const typesHTML = Object.keys(productCategories)
     .map(
       (type) => `
     <input type="radio" name="type-food" id="${type}" />
-    <label for="${type}">${capitalizeFirstLetter(type)}</label>
+    <label for="${type}">${globalFunctions.capitalizeFirstLetter(type)}</label>
   `
     )
     .join("");
@@ -71,43 +67,24 @@ const displayTypes = function (data) {
     "afterbegin",
     `
   <section class="side-menu">
+      <div>
         <div>
-          <div>
             <input class="search-side-menu" type="text" placeholder="Search" />
-          </div>
         </div>
-
+      </div>
         <div class="checkbox-wrapper">
           <p>Type</p>
           <div class="side-menu-types">
-          ${typesHTML}
+            ${typesHTML}
           </div>
         </div>
-        <div>
+      <div>
           <p>Price Range</p>
           <input type="range" name="" id="" />
-        </div>
+      </div>
       </section>
-      <section class="main-content">
+        <section class="main-content">
       </section> 
-
   `
   );
 };
-
-const clearHTML = function () {
-  mainSection.innerHTML = "";
-};
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-// <div class="checkbox-wrapper">
-// <p>Sub Category</p>
-// <div>
-
-//   ${subCategoryHTML}
-
-// </div>
-// </div>

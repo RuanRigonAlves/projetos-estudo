@@ -2,29 +2,21 @@
 
 export default function initModel() {}
 
-// COFFEE DATA
 export const myCoffeeData = {};
-// COFFEE DATA
 
-// Fetch the JSON file and add to myCoffeeData//
 export async function fetchCoffeeData() {
   try {
     const response = await fetch("./json/coffee.json");
     const jsonData = await response.json();
-    // console.log(jsonData);
     myCoffeeData["Coffee"] = jsonData;
 
     getCategories(jsonData.products);
-    // getSubCategories(jsonData.products);
-    // console.log(jsonData);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
 fetchCoffeeData();
-// Fetch the JSON file and add to myCoffeeData//
 
-// Create productsCategories inside Object and store values //
 const getCategories = function (arrayProducts) {
   myCoffeeData.Coffee.productsCategories = {};
 
@@ -36,9 +28,7 @@ const getCategories = function (arrayProducts) {
     myCoffeeData.Coffee.productsCategories[category].push(product);
   }
 };
-// Create productsCategories inside Object and store values //
 
-// Create productsSubCategories inside Object and store values //
 const getSubCategories = function (arrayProducts) {
   myCoffeeData.Coffee.productsSubCategories = {};
 
@@ -51,10 +41,7 @@ const getSubCategories = function (arrayProducts) {
   }
 };
 
-// Create productsSubCategories inside Object and store values //
-
-//testing some shit out//
-export const testing = function (id) {
+export const getSubCategoryByID = function (id) {
   const allProducts = myCoffeeData.Coffee.products;
 
   const productsWithCategory = allProducts.filter(
@@ -62,10 +49,4 @@ export const testing = function (id) {
   );
 
   getSubCategories(productsWithCategory);
-
-  // fetchCoffeeData();
-
-  // console.log(productsWithCategory);
-  // console.log(myCoffeeData.Coffee.productsSubCategories);
 };
-//testing some shit out//
