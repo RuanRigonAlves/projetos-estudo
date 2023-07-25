@@ -15,6 +15,7 @@ headerProducts.addEventListener("click", function (e) {
 });
 
 export const displayProducts = function (products) {
+  // console.log(products);
   const productsHTML = products
     .map(
       (product) => `
